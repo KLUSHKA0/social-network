@@ -4,14 +4,14 @@ package com.noprogs_404.social_network.utils
 object Constants {
 
 
-    object db {
-        const val URL_DATABASE = "jdbc:postgresql://%s:%d/%s"
-        const val HOST = "10.0.2.2"
-        const val DATABASE = "socialnetwork"
-        const val PORT = 5432
-        const val USER = "postgres"
-        const val PASSWORD = "SAnikKL1"
-    }
+//    object db {
+//        const val URL_DATABASE = "jdbc:postgresql://%s:%d/%s"
+//        const val HOST = "10.0.2.2"
+//        const val DATABASE = "socialnetwork"
+//        const val PORT = 5432
+//        const val USER = "postgres"
+//        const val PASSWORD = "SAnikKL1"
+//    }
 
     object Screens {
         const val MAIN_SCREEN = "main_screen"

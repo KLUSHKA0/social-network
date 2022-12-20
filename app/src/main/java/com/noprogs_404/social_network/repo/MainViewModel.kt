@@ -9,7 +9,6 @@ import com.noprogs_404.social_network.models.User
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import kotlin.concurrent.thread
 import kotlin.properties.Delegates
 
 class MainViewModel() {

@@ -57,15 +57,6 @@ fun UsersScreen(navController: NavController, viewModel: MainViewModel) {
         LazyColumn {
             items(viewModel.userList) { u ->
                 userFrameView(user = u)
-//                Column {
-//                    Text(text = "id: ${u.id}")
-//                    Text(text = "name: ${u.name}")
-//                    Text(text = "bot?: ${u.is_bot}")
-//                    Text(text = "surname: ${u.surname}")
-//                    Text(text = "username: ${u.username}")
-//                    Text(text = "language: ${u.language_code}")
-//                    Text(text = "premium: ${u.is_premium}")
-//                }
             }
         }
 

@@ -9,7 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import com.noprogs_404.social_network.Screans
+import com.noprogs_404.social_network.ScreenObjects
 import com.noprogs_404.social_network.repo.MainViewModel
 
 
@@ -17,27 +17,27 @@ import com.noprogs_404.social_network.repo.MainViewModel
 fun MainScreen(navController: NavController, viewModel: MainViewModel) {
     Column(modifier = Modifier.fillMaxSize()) {
         Button(
-            onClick = { navController.navigate(Screans.Users.route) },
+            onClick = { navController.navigate(ScreenObjects.Users.route) },
             modifier = Modifier.fillMaxWidth()
         ) {
             Text(text = "Users", fontSize = 20.sp)
         }
         Button(
-            onClick = { navController.navigate(Screans.Chats.route) },
+            onClick = { navController.navigate(ScreenObjects.Chats.route) },
             modifier = Modifier.fillMaxWidth()
         ) {
             Text(text = "Chats", fontSize = 20.sp)
         }
         Button(
             onClick = {
-                navController.navigate(Screans.ChatPermissions.route)
+                navController.navigate(ScreenObjects.ChatPermissions.route)
             },
             modifier = Modifier.fillMaxWidth()
         ) {
             Text(text = "Chat permissions", fontSize = 20.sp)
         }
         Button(
-            onClick = { navController.navigate(Screans.Messages.route) },
+            onClick = { navController.navigate(ScreenObjects.Messages.route) },
             modifier = Modifier.fillMaxWidth()
         ) {
             Text(text = "Messages", fontSize = 20.sp)

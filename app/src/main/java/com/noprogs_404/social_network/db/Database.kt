@@ -2,7 +2,6 @@ package com.noprogs_404.social_network.db
 
 import com.noprogs_404.social_network.models.Chat
 import com.noprogs_404.social_network.models.User
-import com.noprogs_404.social_network.utils.Constants
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import java.sql.Connection

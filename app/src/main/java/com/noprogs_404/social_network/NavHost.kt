@@ -6,6 +6,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.noprogs_404.social_network.repo.MainViewModel
 import com.noprogs_404.social_network.screens.ChatsScreen
+import com.noprogs_404.social_network.screens.LoginScreen
 import com.noprogs_404.social_network.screens.MainScreen
 import com.noprogs_404.social_network.screens.UsersScreen
 import com.noprogs_404.social_network.utils.Constants
@@ -17,6 +18,7 @@ sealed class ScreenObjects(val route: String) {
     object Chats : ScreenObjects(Constants.Screens.CHATS_SCREEN)
     object Messages : ScreenObjects(Constants.Screens.MESSAGES_SCREEN)
     object ChatPermissions : ScreenObjects(Constants.Screens.CHAT_PERMISSIONS_SCREEN)
+    object Login : ScreenObjects(Constants.Screens.LOGIN_SCREEN)
 }
 
 @Composable
@@ -27,7 +29,7 @@ fun MyAppNavHost(
 
     NavHost(
         navController = navController,
-        startDestination = ScreenObjects.Main.route
+        startDestination = ScreenObjects.Login.route
     ) {
         composable(ScreenObjects.Users.route) {
             UsersScreen(
@@ -45,6 +47,13 @@ fun MyAppNavHost(
         composable(ScreenObjects.ChatPermissions.route) {}
         composable(ScreenObjects.Main.route) {
             MainScreen(
+                navController = navController,
+                viewModel = viewModel
+            )
+        }
+
+        composable(ScreenObjects.Login.route) {
+            LoginScreen(
                 navController = navController,
                 viewModel = viewModel
             )

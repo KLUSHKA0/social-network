@@ -19,5 +19,6 @@ object Constants {
         const val CHATS_SCREEN = "chats_screen"
         const val MESSAGES_SCREEN = "messages_screen"
         const val CHAT_PERMISSIONS_SCREEN = "chat_permissions_screen"
+        const val LOGIN_SCREEN = "login_screen"
     }
 }

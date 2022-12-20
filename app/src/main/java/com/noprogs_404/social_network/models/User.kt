@@ -1,7 +1,7 @@
 package com.noprogs_404.social_network.models
 
 data class User(
-    val id: Int,
+    val id: Int = -1,
     var is_bot: Boolean = false,
     var name: String,
     var surname: String,

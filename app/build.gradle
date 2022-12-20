@@ -60,4 +60,25 @@ dependencies {
     androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_version"
     debugImplementation "androidx.compose.ui:ui-tooling:$compose_version"
     debugImplementation "androidx.compose.ui:ui-test-manifest:$compose_version"
+
+
+    // Postgres
+    implementation 'org.postgresql:postgresql:42.2.5'
+
+    //Gson
+    implementation 'com.google.code.gson:gson:2.10'
+
+    //Navigation
+    implementation "androidx.navigation:navigation-compose:$nav_version"
+
+    // Coroutines
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.2'
+
+    // Coroutine Lifecycle Scopes
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.1"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.4.1"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.4.1"
+    implementation "androidx.activity:activity-ktx:1.4.0"
+    implementation "androidx.compose.runtime:runtime-livedata:$compose_version"
 }

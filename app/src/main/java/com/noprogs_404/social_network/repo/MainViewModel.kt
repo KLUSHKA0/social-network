@@ -25,31 +25,49 @@ class MainViewModel() {
 
 
     @OptIn(DelicateCoroutinesApi::class)
-    fun getUsers() {
+    private fun getUsers() {
         GlobalScope.launch {
             db.getUsers().collect { u -> userList.add(u) }
         }
     }
 
     @OptIn(DelicateCoroutinesApi::class)
-    fun getLastUserId() {
+    fun addUser(user: User) {
+        GlobalScope.launch {
+            lastUserId += 1
+            val us = User(
+                id = lastUserId,
+                is_bot = user.is_bot,
+                name = user.name,
+                surname = user.surname,
+                username = user.username,
+                language_code = user.language_code,
+                is_premium = user.is_premium
+            )
+            db.addUser(us)
+            userList.add(us)
+        }
+    }
+
+    @OptIn(DelicateCoroutinesApi::class)
+    private fun getLastUserId() {
         GlobalScope.launch {
             db.getLastId().collect { i -> lastUserId = i }
         }
     }
 
     @OptIn(DelicateCoroutinesApi::class)
-    fun getChats() {
+    private fun getChats() {
         GlobalScope.launch {
             db.getChats().collect { c -> chatList.add(c) }
         }
     }
 
-    fun getChatPermissions() {
+    private fun getChatPermissions() {
 
     }
 
-    fun getMessages() {
+    private fun getMessages() {
 
     }
 

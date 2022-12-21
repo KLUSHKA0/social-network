@@ -14,7 +14,7 @@ import kotlin.properties.Delegates
 class MainViewModel() {
 
 
-    private var db = Database()
+    var db = Database()
 
     val userList: MutableList<User> = mutableStateListOf()
     val chatList: MutableList<Chat> = mutableStateListOf()

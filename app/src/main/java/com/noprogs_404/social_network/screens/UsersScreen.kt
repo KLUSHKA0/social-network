@@ -40,23 +40,23 @@ fun UsersScreen(navController: NavController, viewModel: MainViewModel) {
                         is_premium = true
                     )
                     viewModel.db.addUser(us)
-                    viewModel.userList.add(us)
+                    viewModel.userList[us.id] = us
                 }
             }) {
                 Text("Add user", fontSize = 20.sp)
             }
 
             Button(onClick = {
-                viewModel.db.deleteLastUser(viewModel.userList.last().id)
-                viewModel.userList.removeAt(viewModel.userList.size - 1)
+                viewModel.db.deleteLastUser(viewModel.userList.toSortedMap().lastKey())
+                viewModel.userList.remove(viewModel.userList.toSortedMap().lastKey())
             }) {
                 Text("Delete last user", fontSize = 20.sp)
             }
 
         }
         LazyColumn {
-            items(viewModel.userList) { u ->
-                userFrameView(user = u)
+            items(viewModel.userList.map { it }) { u ->
+                userFrameView(user = u.value)
             }
         }
 

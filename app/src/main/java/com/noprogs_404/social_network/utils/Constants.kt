@@ -1,8 +1,13 @@
 package com.noprogs_404.social_network.utils
 
+import com.noprogs_404.social_network.models.User
+
+
+lateinit var user: User
 
 object Constants {
 
+    const val APP_NAME = "Social Network"
 
 //    object db {
 //        const val URL_DATABASE = "jdbc:postgresql://%s:%d/%s"
@@ -14,6 +19,7 @@ object Constants {
 //    }
 
     object Screens {
+        const val CHAT_LIST_SCREEN = "chat_list_screen"
         const val MAIN_SCREEN = "main_screen"
         const val USERS_SCREEN = "users_screen"
         const val CHATS_SCREEN = "chats_screen"

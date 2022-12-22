@@ -16,18 +16,20 @@ import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.noprogs_404.social_network.ScreenObjects
 import com.noprogs_404.social_network.repo.MainViewModel
+import com.noprogs_404.social_network.utils.user
 
 
 @Composable
 fun LoginScreen(navController: NavController, viewModel: MainViewModel) {
 
-    var login by remember {
+    var id by remember {
         mutableStateOf(TextFieldValue(""))
     }
 
-    var password by remember {
-        mutableStateOf(TextFieldValue(""))
+    var log by remember {
+        mutableStateOf("")
     }
 
 
@@ -40,18 +42,26 @@ fun LoginScreen(navController: NavController, viewModel: MainViewModel) {
         ) {
             Text(text = "Login", fontSize = 26.sp)
             OutlinedTextField(
-                value = login,
-                onValueChange = { nV -> login = nV },
-                label = { Text(text = "Enter login") }
+                value = id,
+                onValueChange = { nV -> id = nV },
+                label = { Text(text = "Enter user id") }
             )
-            OutlinedTextField(
-                value = password,
-                onValueChange = { nV -> password = nV },
-                label = { Text(text = "Enter password") }
-            )
-            Button(onClick = { }) {
+            Button(onClick = {
+                if (viewModel.userList[id.text.toInt()] != null) {
+                    user = viewModel.userList[id.text.toInt()]!!
+                    navController.navigate(ScreenObjects.ChatList.route)
+                } else {
+                    log = "Пользователя с айди ${id.text} не существует"
+                }
+            }) {
                 Text(text = "Login")
             }
+            Button(onClick = {
+                navController.navigate(ScreenObjects.Main.route)
+            }) {
+                Text(text = "Admin panel")
+            }
+            Text(text = log)
         }
     }
 }

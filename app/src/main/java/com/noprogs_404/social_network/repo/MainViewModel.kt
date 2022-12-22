@@ -1,6 +1,7 @@
 package com.noprogs_404.social_network.repo
 
 import androidx.compose.runtime.mutableStateListOf
+import androidx.compose.runtime.mutableStateMapOf
 import com.noprogs_404.social_network.db.Database
 import com.noprogs_404.social_network.models.Chat
 import com.noprogs_404.social_network.models.ChatPermission
@@ -16,10 +17,10 @@ class MainViewModel() {
 
     var db = Database()
 
-    val userList: MutableList<User> = mutableStateListOf()
-    val chatList: MutableList<Chat> = mutableStateListOf()
-    val chatPermissionList: MutableList<ChatPermission> = mutableStateListOf()
-    val messageList: MutableList<Message> = mutableStateListOf()
+    val userList: MutableMap<Int, User> = mutableStateMapOf()
+    val chatList: MutableMap<Int, Chat> = mutableStateMapOf()
+    val chatPermissionList: MutableMap<Int, ChatPermission> = mutableStateMapOf()
+    val messageList: MutableMap<Int, Message> = mutableStateMapOf()
 
     var lastUserId by Delegates.notNull<Int>()
 
@@ -27,7 +28,7 @@ class MainViewModel() {
     @OptIn(DelicateCoroutinesApi::class)
     fun getUsers() {
         GlobalScope.launch {
-            db.getUsers().collect { u -> userList.add(u) }
+            db.getUsers().collect { u -> userList[u.id] = u }
         }
     }
 
@@ -41,7 +42,7 @@ class MainViewModel() {
     @OptIn(DelicateCoroutinesApi::class)
     fun getChats() {
         GlobalScope.launch {
-            db.getChats().collect { c -> chatList.add(c) }
+            db.getChats().collect { c -> chatList[c.id] = c }
         }
     }
 

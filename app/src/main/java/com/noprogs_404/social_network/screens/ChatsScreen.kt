@@ -53,8 +53,8 @@ fun ChatsScreen(navController: NavController, viewModel: MainViewModel) {
 
         }
         LazyColumn(modifier = Modifier.fillMaxWidth()) {
-            items(viewModel.chatList) { c ->
-            chatFrameView(chat = c)
+            items(viewModel.chatList.map { it }) { c ->
+            chatFrameView(chat = c.value)
             }
         }
 

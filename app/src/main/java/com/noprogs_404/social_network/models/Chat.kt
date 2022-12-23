@@ -1,7 +1,7 @@
 package com.noprogs_404.social_network.models
 
 data class Chat(
-    val id: Int,
+    var id: Int,
     var type: String,
     var title: String = "",
     var username: String,

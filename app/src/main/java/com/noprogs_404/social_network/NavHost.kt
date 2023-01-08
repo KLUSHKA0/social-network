@@ -25,8 +25,13 @@ sealed class ScreenObjects(val route: String) {
     object DeleteMessage : ScreenObjects(Constants.Screens.DELETE_MESSAGE_SCREEN)
 
     object ChatPermissions : ScreenObjects(Constants.Screens.CHAT_PERMISSIONS_SCREEN)
+
+    object Login : ScreenObjects(Constants.Screens.LOGIN_SCREEN)
+    object ChatList : ScreenObjects(Constants.Screens.CHAT_LIST_SCREEN)
+
     object AddChatPermissions : ScreenObjects(Constants.Screens.ADD_CHAT_PERMISSIONS_SCREEN)
     object DeleteChatPermissions : ScreenObjects(Constants.Screens.DELETE_CHAT_PERMISSIONS_SCREEN)
+
 }
 
 @Composable
@@ -37,14 +42,19 @@ fun MyAppNavHost(
 
     NavHost(
         navController = navController,
-        startDestination = ScreenObjects.Main.route
+        startDestination = ScreenObjects.Login.route
     ) {
+
+        composable(ScreenObjects.Users.route) {
+            UsersScreen(navController = navController, viewModel = viewModel)
+
         // region main
         composable(ScreenObjects.Main.route) {
             MainScreen(
                 navController = navController,
                 viewModel = viewModel
             )
+
         }
         //endregion
 
@@ -63,6 +73,25 @@ fun MyAppNavHost(
         //region chat
         composable(ScreenObjects.Chats.route) {
             ChatsScreen(navController = navController, viewModel = viewModel)
+
+        }
+        composable(ScreenObjects.Messages.route) {
+
+        }
+        composable(ScreenObjects.ChatPermissions.route) {
+
+        }
+        composable(ScreenObjects.Main.route) {
+            MainScreen(navController = navController, viewModel = viewModel)
+        }
+
+        composable(ScreenObjects.Login.route) {
+            LoginScreen(navController = navController, viewModel = viewModel)
+        }
+
+        composable(ScreenObjects.ChatList.route) {
+            ChatListScreen(navController = navController, viewModel = viewModel)
+
         }
         composable(ScreenObjects.AddChat.route) {
             AddChatScreen(navController = navController, viewModel = viewModel)
@@ -70,6 +99,7 @@ fun MyAppNavHost(
         composable(ScreenObjects.DeleteChat.route) {
             DeleteChatScreen(navController = navController, viewModel = viewModel
             )
+
         }
         //endregion
 

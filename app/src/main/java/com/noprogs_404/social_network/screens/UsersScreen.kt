@@ -24,6 +24,7 @@ fun UsersScreen(navController: NavController, viewModel: MainViewModel) {
 
     viewModel.userList = TreeMap(viewModel.userList)
 
+
     Column {
         Row(
             modifier = Modifier
@@ -35,11 +36,14 @@ fun UsersScreen(navController: NavController, viewModel: MainViewModel) {
             
             Button(onClick = { navController.navigate(ScreenObjects.DeleteUser.route) }) {
                 Text(text = "Delete User", fontSize = 20.sp, textAlign = TextAlign.Center)
+
             }
         }
         LazyColumn {
             items(viewModel.userList.map { it }) { u ->
+
                 mainView(user = u.value)
+
             }
         }
 

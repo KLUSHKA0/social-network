@@ -1,6 +1,8 @@
 package com.noprogs_404.social_network.db
 
 import com.noprogs_404.social_network.models.Chat
+import com.noprogs_404.social_network.models.ChatPermission
+import com.noprogs_404.social_network.models.Message
 import com.noprogs_404.social_network.models.User
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -50,6 +52,7 @@ class Database {
 
 
     //region user
+
     // CREATE
     fun addUser(user: User) {
         thread {
@@ -69,16 +72,20 @@ class Database {
     fun updateUser(id: Int, user: User) {}
 
     // DELETE
-    fun deleteUser(id: Int) {}
-
-    // DELETE
-    fun deleteLastUser(id: Int) {
+    fun deleteUser(id: Int) {
         thread {
             connection.prepareStatement(models.deleteUser(id)).execute()
         }
     }
 
-    fun getLastId(): Flow<Int> = flow {
+//    // DELETE
+//    fun deleteLastUser(id: Int) {
+//        thread {
+//            connection.prepareStatement(models.deleteUser(id)).execute()
+//        }
+//    }
+
+    fun getLastUserId(): Flow<Int> = flow {
         val res = connection.prepareStatement(models.lastUserId()).executeQuery()
         while (res.next()) {
             emit(res.getInt("last_value"))
@@ -90,8 +97,14 @@ class Database {
 
     //region chat
 
-    fun addChat(chat: Chat) {}
+    // CREATE
+    fun addChat(chat: Chat) {
+        thread {
+            connection.prepareStatement(models.addChat(chat)).execute()
+        }
+    }
 
+    // READ
     fun getChats(): Flow<Chat> = flow {
         val res = connection.prepareStatement(models.getChats()).executeQuery()
 
@@ -100,19 +113,98 @@ class Database {
         }
     }
 
+    // UPDATE
     fun updateChat(id: Int, chat: Chat) {}
 
-    fun deleteChat(id: Int) {}
+    // DELETE
+    fun deleteChat(id: Int) {
+        thread {
+            connection.prepareStatement(models.deleteChat(id)).execute()
+        }
+    }
+
+    fun getLastChatId(): Flow<Int> = flow {
+        val res = connection.prepareStatement(models.lastChatId()).executeQuery()
+        while (res.next()) {
+            emit(res.getInt("last_value"))
+        }
+    }
 
     //endregion
 
 
-    //region chat permission
-
-    //endregion
+//    //region chat permission
+//
+//    // CREATE
+//    fun addChatPermission(chatPermission: ChatPermission) {
+//        thread {
+//            connection.prepareStatement(models.addChatPermission(chatPermission)).execute()
+//        }
+//    }
+//
+//    // READ
+//    fun getChatPermissions(): Flow<ChatPermission> = flow {
+//        val res = connection.prepareStatement(models.getChatPermissions()).executeQuery()
+//
+//        while (res.next()) {
+//            emit(models.convertChatPermission(res))
+//        }
+//    }
+//
+//    // UPDATE
+//    fun updateChatPermission(id: Int, chatPermission: ChatPermission) {}
+//
+//    // DELETE
+//    fun deleteChatPermission(id: Int) {
+//        thread {
+//            connection.prepareStatement(models.deleteChatPermission(id)).execute()
+//        }
+//    }
+//
+//    fun getLastChatPermissionId(): Flow<Int> = flow {
+//        val res = connection.prepareStatement(models.lastChatPermissionId()).executeQuery()
+//        while (res.next()) {
+//            emit(res.getInt("last_value"))
+//        }
+//    }
+//
+//    //endregion
 
 
     //region messages
+
+    // CREATE
+    fun addMessage(message: Message) {
+        thread {
+            connection.prepareStatement(models.addMessage(message)).execute()
+        }
+    }
+
+    // READ
+    fun getMessages(): Flow<Message> = flow {
+        val res = connection.prepareStatement(models.getMessages()).executeQuery()
+
+        while (res.next()) {
+            emit(models.convertMessage(res))
+        }
+    }
+
+    // UPDATE
+    fun updateMessage(id: Int, message: Message) {}
+
+    // DELETE
+    fun deleteMessage(id: Int) {
+        thread {
+            connection.prepareStatement(models.deleteMessage(id)).execute()
+        }
+    }
+
+    fun getLastMessageId(): Flow<Int> = flow {
+        val res = connection.prepareStatement(models.lastMessageId()).executeQuery()
+        while (res.next()) {
+            emit(res.getInt("last_value"))
+        }
+    }
 
     //endregion
 

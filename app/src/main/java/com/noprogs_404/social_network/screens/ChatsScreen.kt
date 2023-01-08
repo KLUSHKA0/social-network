@@ -11,16 +11,21 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.noprogs_404.social_network.ScreenObjects
 import com.noprogs_404.social_network.repo.MainViewModel
 import com.noprogs_404.social_network.utils.chatFrameView
+import com.noprogs_404.social_network.utils.mainView
+import java.util.TreeMap
 
 @Composable
 fun ChatsScreen(navController: NavController, viewModel: MainViewModel) {
 
+    viewModel.chatList = TreeMap(viewModel.chatList)
 
     Column {
         Row {
             Button(onClick = {
+                navController.navigate(ScreenObjects.AddChat.route)
 //                viewModel.lastUserId += 1
 //
 //                GlobalScope.launch {
@@ -42,10 +47,11 @@ fun ChatsScreen(navController: NavController, viewModel: MainViewModel) {
             }
 
             Button(onClick = {
+                navController.navigate(ScreenObjects.DeleteChat.route)
 //                viewModel.db.deleteLastUser(viewModel.userList.last().id)
 //                viewModel.userList.removeAt(viewModel.userList.size - 1)
             }) {
-                Text("Delete last chat", fontSize = 20.sp)
+                Text("Delete chat", fontSize = 20.sp)
             }
 
 
@@ -54,7 +60,7 @@ fun ChatsScreen(navController: NavController, viewModel: MainViewModel) {
         }
         LazyColumn(modifier = Modifier.fillMaxWidth()) {
             items(viewModel.chatList.map { it }) { c ->
-            chatFrameView(chat = c.value)
+                mainView(chat = c.value)
             }
         }
 

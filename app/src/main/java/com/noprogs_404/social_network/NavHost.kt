@@ -47,6 +47,7 @@ fun MyAppNavHost(
 
         composable(ScreenObjects.Users.route) {
             UsersScreen(navController = navController, viewModel = viewModel)
+        }
 
         // region main
         composable(ScreenObjects.Main.route) {
